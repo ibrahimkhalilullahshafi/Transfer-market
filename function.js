@@ -8,7 +8,7 @@ function addPlayer(players) {
 }
 function display(selectedPlayer) {
     console.log(selectedPlayer)
-    const listedPlayer = document.getElementById("selected-list");
+    const listedPlayer = document.getElementById('selected-list');
     listedPlayer.innerHTML = "";
     for (let i = 0; i < selectedPlayer.length; i++) {
         if (i >= 5) {
@@ -22,7 +22,7 @@ function display(selectedPlayer) {
         }
     }
 }
-// common function-----------------------------------------
+// ---------------------------common function start-----------------------------------------
 
 function getInputFieldValueById(inputFieldId) {
     const inputField = document.getElementById(inputFieldId);
@@ -31,12 +31,20 @@ function getInputFieldValueById(inputFieldId) {
     inputField.value = '';
     return inputFieldValue
 }
+// ----------------------------common function end-----------------------------------------
 
 
 document.getElementById('calculate').addEventListener('click', function () {
-    const expense = getInputFieldValueById('inputPerPlayer');
+    const expense = getInputFieldValueById('input-per-player');
     const playerNumber = document.getElementById('selected-list').children.length;
     const playerExpenses = expense * playerNumber;
-    const playerExpensesTotal = document.getElementById('playerExpense');
+    const playerExpensesTotal = document.getElementById('player-expense');
     playerExpensesTotal.innerText = playerExpenses;
+    document.getElementById('total-calculaton').addEventListener('click', function () {
+        const managerExpense = getInputFieldValueById('input-manager');
+        const coachExpense = getInputFieldValueById('input-coach');
+        const totalExpense = playerExpenses + managerExpense + coachExpense;
+        const totalExpenseField = document.getElementById('total-expense');
+        totalExpenseField.innerText = totalExpense;
+    })
 })
